@@ -37,7 +37,7 @@
           <input type="search" id="search-input" placeholder="Search for sneakers" aria-label="Search shoes" />
         </form>
         <button class="icon-btn" aria-label="Favorites"><i class="fa-regular fa-heart"></i></button>
-        <button class="icon-btn" aria-label="Cart">
+        <button class="icon-btn" aria-label="Cart" id="open-cart">
           <i class="fa-solid fa-cart-shopping"></i>
           <span class="badge" id="cart-count">0</span>
         </button>
@@ -235,6 +235,65 @@
       </div>
     </div>
   </footer>
+
+  <div class="cart-modal" id="cart-modal" aria-hidden="true">
+    <div class="cart-modal__overlay"></div>
+    <div class="cart-modal__panel" role="dialog" aria-labelledby="cart-title">
+      <header class="cart-modal__header">
+        <div>
+          <p class="pill pill--ghost">Cart</p>
+          <h3 id="cart-title">Your bag</h3>
+        </div>
+        <button class="icon-btn" id="close-cart" aria-label="Close cart">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </header>
+
+      <div class="cart-modal__body">
+        <div class="cart-list" id="cart-items"></div>
+
+        <div class="cart-summary">
+          <div class="cart-summary__line">
+            <span>Subtotal</span>
+            <strong id="cart-subtotal">$0</strong>
+          </div>
+          <div class="cart-summary__line muted">
+            <span>Shipping</span>
+            <span>Free over $100</span>
+          </div>
+          <div class="cart-summary__line cart-summary__line--total">
+            <span>Total due</span>
+            <strong id="cart-total">$0</strong>
+          </div>
+
+          <form id="checkout-form" class="checkout-form">
+            <div class="form-row">
+              <label for="checkout-name">Full name</label>
+              <input id="checkout-name" name="name" required placeholder="Jordan Smith" />
+            </div>
+            <div class="form-row">
+              <label for="checkout-email">Email</label>
+              <input id="checkout-email" name="email" type="email" required placeholder="you@example.com" />
+            </div>
+            <div class="form-row">
+              <label for="checkout-address">Shipping address</label>
+              <input id="checkout-address" name="address" required placeholder="123 Vibe Ave, New York" />
+            </div>
+            <div class="form-row form-row--inline">
+              <label for="checkout-method">Payment</label>
+              <select id="checkout-method" name="method">
+                <option>Visa / Mastercard</option>
+                <option>PayPal</option>
+                <option>Apple Pay</option>
+              </select>
+              <button class="btn btn--primary" type="submit">Checkout now</button>
+            </div>
+            <p class="muted">Secure checkout · Encrypted payment</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>

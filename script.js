@@ -82,7 +82,14 @@ const searchInput = document.getElementById('search-input');
 const cartCount = document.getElementById('cart-count');
 const toast = document.getElementById('toast');
 const reviewContainer = document.getElementById('reviews');
-let cartTotal = 0;
+const cartItemsContainer = document.getElementById('cart-items');
+const cartModal = document.getElementById('cart-modal');
+const openCartBtn = document.getElementById('open-cart');
+const closeCartBtn = document.getElementById('close-cart');
+const subtotalEl = document.getElementById('cart-subtotal');
+const totalEl = document.getElementById('cart-total');
+const checkoutForm = document.getElementById('checkout-form');
+const cart = new Map();
 
 function createProductCard(product) {
   const card = document.createElement('article');
@@ -129,9 +136,78 @@ function renderProducts(filter = 'all', query = '') {
 }
 
 function addToCart(name) {
-  cartTotal += 1;
-  cartCount.textContent = cartTotal;
+  const product = products.find((item) => item.name === name);
+  if (!product) return;
+
+  const existing = cart.get(name) ?? { product, quantity: 0 };
+  cart.set(name, { ...existing, quantity: existing.quantity + 1 });
+  updateCartUI();
   showToast(`${name} added to cart`);
+}
+
+function changeQuantity(name, delta) {
+  const entry = cart.get(name);
+  if (!entry) return;
+
+  const nextQty = entry.quantity + delta;
+  if (nextQty <= 0) {
+    cart.delete(name);
+  } else {
+    cart.set(name, { ...entry, quantity: nextQty });
+  }
+  updateCartUI();
+}
+
+function removeFromCart(name) {
+  if (cart.has(name)) {
+    cart.delete(name);
+    updateCartUI();
+    showToast(`${name} removed from cart`);
+  }
+}
+
+function updateCartUI() {
+  cartItemsContainer.innerHTML = '';
+  const entries = [...cart.values()];
+
+  if (!entries.length) {
+    cartItemsContainer.innerHTML = '<p class="empty-cart">Your cart is empty. Add a pair to get started.</p>';
+  }
+
+  let itemCount = 0;
+  let subtotal = 0;
+
+  entries.forEach(({ product, quantity }) => {
+    itemCount += quantity;
+    subtotal += product.price * quantity;
+
+    const itemEl = document.createElement('div');
+    itemEl.className = 'cart-item';
+    itemEl.innerHTML = `
+      <span class="badge-inline">${quantity}x</span>
+      <div class="cart-item__info">
+        <h5>${product.name}</h5>
+        <div class="cart-item__meta">$${product.price} · ${product.category}</div>
+      </div>
+      <div class="cart-item__controls">
+        <button class="pill-btn" aria-label="Decrease ${product.name}">-</button>
+        <span>${quantity}</span>
+        <button class="pill-btn" aria-label="Increase ${product.name}">+</button>
+        <button class="pill-btn" aria-label="Remove ${product.name}">Remove</button>
+      </div>
+    `;
+
+    const [decreaseBtn, increaseBtn, removeBtn] = itemEl.querySelectorAll('button');
+    decreaseBtn.addEventListener('click', () => changeQuantity(product.name, -1));
+    increaseBtn.addEventListener('click', () => changeQuantity(product.name, 1));
+    removeBtn.addEventListener('click', () => removeFromCart(product.name));
+
+    cartItemsContainer.appendChild(itemEl);
+  });
+
+  cartCount.textContent = itemCount;
+  subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+  totalEl.textContent = `$${subtotal.toFixed(2)}`;
 }
 
 function showToast(message) {
@@ -172,5 +248,38 @@ searchInput.addEventListener('input', (event) => {
   renderProducts(activeFilter, event.target.value);
 });
 
+function openCart() {
+  cartModal.classList.add('is-open');
+  cartModal.setAttribute('aria-hidden', 'false');
+}
+
+function closeCart() {
+  cartModal.classList.remove('is-open');
+  cartModal.setAttribute('aria-hidden', 'true');
+}
+
+openCartBtn.addEventListener('click', openCart);
+closeCartBtn.addEventListener('click', closeCart);
+cartModal.querySelector('.cart-modal__overlay').addEventListener('click', closeCart);
+
+checkoutForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (!cart.size) {
+    showToast('Add at least one item before checkout.');
+    return;
+  }
+
+  const formData = new FormData(checkoutForm);
+  const name = formData.get('name');
+  const method = formData.get('method');
+
+  showToast(`Thanks ${name || 'there'}! Checkout confirmed via ${method}.`);
+  cart.clear();
+  updateCartUI();
+  checkoutForm.reset();
+  closeCart();
+});
+
 renderProducts();
 renderReviews();
+updateCartUI();
