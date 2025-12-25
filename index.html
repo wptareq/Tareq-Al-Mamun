@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShoesVibe Inspired | Footwear Boutique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4RhisP8N6M1L1Vb4nZ3V5Xvj1p7nUksdQRVvoxMfooAoCR4CIe1JkL6R9N0wKQmK3Ng==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="container">
+      <div class="top-bar__note">Free shipping for orders over $100 · 30-day returns</div>
+      <div class="top-bar__meta">
+        <a href="mailto:support@shoesvibe.com" class="pill pill--ghost"><i class="fa-regular fa-envelope"></i> support@shoesvibe.com</a>
+        <span class="pill pill--accent"><i class="fa-solid fa-bolt"></i> Weekend flash sale · Up to 40% off</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="container nav__inner">
+      <div class="brand">ShoesVibe</div>
+      <ul class="nav__links">
+        <li><a class="is-active" href="#hero">Home</a></li>
+        <li><a href="#featured">Shop</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <form id="search-form" class="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="search-input" placeholder="Search for sneakers" aria-label="Search shoes" />
+        </form>
+        <button class="icon-btn" aria-label="Favorites"><i class="fa-regular fa-heart"></i></button>
+        <button class="icon-btn" aria-label="Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="container hero__content">
+        <div class="hero__text">
+          <span class="pill pill--ghost">New season</span>
+          <h1>Where comfort meets street-ready edge.</h1>
+          <p>Discover premium silhouettes, bold colors, and limited drops inspired by ShoesVibe's signature look.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#featured">Shop the drop</a>
+            <a class="btn btn--ghost" href="#collections">View collections</a>
+          </div>
+          <div class="hero__highlights">
+            <div><strong>1.2K+</strong><span>5-star reviews</span></div>
+            <div><strong>48h</strong><span>Express delivery</span></div>
+            <div><strong>Eco</strong><span>Recycled packaging</span></div>
+          </div>
+        </div>
+        <div class="hero__card">
+          <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=80" alt="Trending sneaker" />
+          <div class="hero__tag">
+            <p>Featured: Glide Runner X</p>
+            <span>$160 · Limited drop</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured" class="section">
+      <div class="container section__header">
+        <div>
+          <span class="pill pill--accent">Curated Picks</span>
+          <h2>Trending styles for every vibe</h2>
+          <p>Handpicked silhouettes that capture the spirit of the ShoesVibe storefront.</p>
+        </div>
+        <div class="filters">
+          <button class="filter-btn is-active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="sneakers">Sneakers</button>
+          <button class="filter-btn" data-filter="running">Running</button>
+          <button class="filter-btn" data-filter="urban">Urban</button>
+        </div>
+      </div>
+      <div id="product-grid" class="products container"></div>
+    </section>
+
+    <section id="collections" class="section section--highlight">
+      <div class="container highlight">
+        <div class="highlight__media">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=80" alt="Monochrome collection" />
+        </div>
+        <div class="highlight__content">
+          <span class="pill pill--ghost">Limited Run</span>
+          <h3>Monochrome Luxe Pack</h3>
+          <p>Minimalist silhouettes with premium leather, micro-perforated panels, and breathable lining. Built for those who move quickly and confidently.</p>
+          <ul class="bullet-list">
+            <li>Responsive foam midsoles for cloud-like comfort</li>
+            <li>Available in charcoal, bone, and whisper white</li>
+            <li>Anti-crease toe box with recycled rubber outsole</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="#featured">Shop monochrome</a>
+            <a class="btn btn--ghost" href="#stories">View lookbook</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--grid" id="stories">
+      <div class="container section__header">
+        <div>
+          <span class="pill pill--accent">Lookbook</span>
+          <h2>Fresh drops & editor picks</h2>
+          <p>Browse seasonal stories built around texture, cushioning, and attitude.</p>
+        </div>
+      </div>
+      <div class="container story-grid">
+        <article class="story">
+          <div class="story__tag">Street-ready</div>
+          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80" alt="Street style" />
+          <div class="story__body">
+            <h4>Citylight Pulse</h4>
+            <p>Reflective overlays and breathable mesh engineered for long nights and longer strides.</p>
+            <a class="link" href="#">Shop the story <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+        <article class="story">
+          <div class="story__tag">Performance</div>
+          <img src="https://images.unsplash.com/photo-1549298916-42b42dc44697?auto=format&fit=crop&w=1000&q=80" alt="Performance shoe" />
+          <div class="story__body">
+            <h4>Flightform Tempo</h4>
+            <p>Ultralight knit uppers with sculpted heel clips for responsive lockdown when pace matters most.</p>
+            <a class="link" href="#">Discover more <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+        <article class="story">
+          <div class="story__tag">Lifestyle</div>
+          <img src="https://images.unsplash.com/photo-1549298916-9d89a9d15ede?auto=format&fit=crop&w=1000&q=80" alt="Lifestyle shoe" />
+          <div class="story__body">
+            <h4>Everyday Essentials</h4>
+            <p>Soft neutral palettes that pair with everything, finished with micro-suede accents and a plush sockliner.</p>
+            <a class="link" href="#">See collection <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--reviews">
+      <div class="container reviews">
+        <div class="reviews__summary">
+          <span class="pill pill--accent">Customer love</span>
+          <h3>4.9/5 average rating</h3>
+          <p>We asked our community what keeps them coming back to ShoesVibe-inspired drops. Here's what they shared.</p>
+          <div class="badges">
+            <div class="badge badge--ghost"><i class="fa-solid fa-truck-fast"></i> Fast dispatch</div>
+            <div class="badge badge--ghost"><i class="fa-solid fa-rotate-left"></i> Easy returns</div>
+            <div class="badge badge--ghost"><i class="fa-solid fa-leaf"></i> Recycled packaging</div>
+          </div>
+        </div>
+        <div class="reviews__list" id="reviews"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section newsletter">
+      <div class="container newsletter__card">
+        <div class="newsletter__info">
+          <span class="pill pill--ghost">Stay in the loop</span>
+          <h3>Join the Vibe List</h3>
+          <p>Get first dibs on new arrivals, exclusive collabs, and private sale invites. Zero spam, just fire fits.</p>
+          <form class="newsletter__form">
+            <input type="email" placeholder="you@example.com" required />
+            <button class="btn btn--primary" type="submit">Subscribe</button>
+          </form>
+          <small>By subscribing you agree to receive product updates and marketing emails.</small>
+        </div>
+        <div class="newsletter__image">
+          <img src="https://images.unsplash.com/photo-1509631171560-7e0c4baf1d5a?auto=format&fit=crop&w=900&q=80" alt="Stack of shoes" />
+          <div class="floating-card">
+            <p>New: Airset Orbit</p>
+            <span>Now shipping worldwide</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand">ShoesVibe</div>
+        <p>Designed to mirror the clean, product-first experience of ShoesVibe.com with custom code and curated drops.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="#featured">All products</a></li>
+          <li><a href="#collections">Limited editions</a></li>
+          <li><a href="#stories">Lookbook</a></li>
+          <li><a href="#contact">Gift cards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Support</h5>
+        <ul>
+          <li><a href="#">Help center</a></li>
+          <li><a href="#">Shipping & returns</a></li>
+          <li><a href="#">Sizing guide</a></li>
+          <li><a href="#">Track order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Visit</h5>
+        <p>123 Vibe Avenue<br />New York, NY</p>
+        <a class="link" href="mailto:support@shoesvibe.com">support@shoesvibe.com</a>
+        <p class="muted">Mon–Sat · 10am – 7pm EST</p>
+      </div>
+    </div>
+    <div class="container footer__meta">
+      <span>© 2024 ShoesVibe Inspired. Crafted with custom HTML, CSS, and JS.</span>
+      <div class="chips">
+        <span class="chip">Visa</span>
+        <span class="chip">Mastercard</span>
+        <span class="chip">PayPal</span>
+        <span class="chip">Apple Pay</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
